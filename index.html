@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elev8 Performance | Soccer Training & Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        :root {
+            --primary: #00ff88; /* Electric Green */
+            --dark: #121212;
+            --dark-gray: #1e1e1e;
+            --light: #f4f4f4;
+            --text-gray: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img { height: 40px; }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { font-weight: 600; font-size: 13px; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--primary); }
+
+        .btn-cta {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 10px 25px;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+        .btn-cta:hover { background-color: #fff; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        .hero-content h1 { font-size: 4rem; margin-bottom: 20px; }
+        .hero-content p { font-size: 1.5rem; margin-bottom: 30px; color: var(--light); }
+
+        /* --- MISSION SECTION --- */
+        .section-title { font-size: 2.5rem; margin-bottom: 50px; color: var(--primary); text-align: center; }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .mission-card {
+            background: var(--dark-gray);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        /* --- ELEV8 FC SECTION --- */
+        .elev8-fc {
+            background-color: var(--dark-gray);
+            border-left: 5px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .fc-content { flex: 1; padding: 40px; min-width: 300px; }
+        
+        .fc-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: url('training1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* --- GALLERY GRIDS --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .gallery-img:hover { transform: scale(1.05); }
+
+        /* --- CALENDAR --- */
+        .calendar-container {
+            background: var(--dark-gray);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { text-align: left; padding: 15px; border-bottom: 1px solid #333; }
+        th { background-color: #111; color: var(--primary); }
+        tr:hover { background-color: #2a2a2a; }
+        .status-open { color: var(--primary); font-weight: bold; }
+
+        /* --- REVIEWS SECTION --- */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--dark-gray);
+            padding: 30px;
+            border-radius: 10px;
+            border-top: 3px solid var(--primary);
+        }
+
+        .stars { color: gold; font-size: 1.2rem; margin-bottom: 15px; }
+        .reviewer-name { font-weight: bold; color: var(--primary); margin-top: 15px; display: block; }
+        
+        /* Review Form */
+        .review-form {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 10px; color: var(--primary); }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #444;
+            color: white;
+            border-radius: 5px;
+        }
+        .submit-btn {
+            background: var(--primary);
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .submit-btn:hover { background: white; }
+
+        /* --- ABOUT US --- */
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+        }
+        .coach-card { background: var(--dark-gray); border-radius: 10px; overflow: hidden; }
+        .coach-img { height: 400px; width: 100%; object-fit: cover; object-position: top; }
+        .coach-info { padding: 30px; }
+        .coach-info h3 { color: var(--primary); margin-bottom: 10px; }
+
+        /* --- CONTACT BAR --- */
+        .contact-bar {
+            background-color: var(--primary);
+            color: var(--dark);
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+        }
+        .contact-btn {
+            display: inline-block;
+            background: var(--dark);
+            color: #fff;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #000;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } 
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .fc-image { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.png" alt="Elev8" onerror="this.style.display='none'"> 
+                ELEV8 PERFORMANCE
+            </div>
+            <nav class="nav-links">
+                <a href="#mission">Mission</a>
+                <a href="#elev8-fc">Elev8 FC</a>
+                <a href="#training">Training</a>
+                <a href="#camps">Camps</a>
+                <a href="#reviews">Reviews</a> <a href="#about">Founders</a>
+            </nav>
+            <a href="#contact" class="btn-cta">Contact Us</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your Game</h1>
+            <p>Professional Soccer Training by Austin Cuevas & Angie Machado</p>
+            <a href="#training" class="btn-cta">Start Training</a>
+        </div>
+    </section>
+
+    <section id="mission">
+        <h2 class="section-title">Our Mission</h2>
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3>Development</h3>
+                <p>We focus on technical mastery and tactical understanding to build complete players.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Passion</h3>
+                <p>Instilling a deep love for the game, fueled by coaches who have played at the highest levels.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Performance</h3>
+                <p>Elite training standards designed to push athletes out of their comfort zones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="elev8-fc">
+        <div class="elev8-fc">
+            <div class="fc-content">
+                <h2 style="color: var(--primary); margin-bottom: 20px;">JOIN ELEV8 FC</h2>
+                <p>We are actively recruiting for <strong>Elev8 FC</strong>. We are looking for dedicated players who are ready to commit to excellence and compete at a high level.</p>
+                <br>
+                <p>If you think you have what it takes to join the squad, we want to hear from you.</p>
+                <br>
+                <a href="#contact" class="btn-cta">Request a Trial</a>
+            </div>
+            <div class="fc-image"></div>
+        </div>
+    </section>
+
+    <section id="training">
+        <h2 class="section-title">Training Programs</h2>
+        
+        <div class="gallery-grid">
+            <img src="training1.jpg" alt="Training 1" class="gallery-img">
+            <img src="training2.jpg" alt="Training 2" class="gallery-img">
+            <img src="training3.jpg" alt="Training 3" class="gallery-img">
+            <img src="training4.jpg" alt="Training 4" class="gallery-img">
+        </div>
+
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3>1-on-1 Private</h3>
+                <p>Individualized attention to correct mechanics and master specific skills.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Small Group</h3>
+                <p>Competitive environments where players challenge each other.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Team Sessions</h3>
+                <p>Tactical training and fitness work designed to elevate the squad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="camps" style="background-color: var(--dark-gray);">
+        <h2 class="section-title">Upcoming Camps</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
+            Our camps are designed to be high-energy, engaging, and incredibly beneficial for player development.
+        </p>
+        <div class="gallery-grid">
+            <img src="camp1.jpg" alt="Camp 1" class="gallery-img">
+            <img src="camp2.jpg" alt="Camp 2" class="gallery-img">
+            <img src="camp3.jpg" alt="Camp 3" class="gallery-img">
+            <img src="camp4.jpg" alt="Camp 4" class="gallery-img">
+        </div>
+        <div class="calendar-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Camp Name</th>
+                        <th>Dates</th>
+                        <th>Location</th>
+                        <th>Age Group</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Spring Break Elite Camp</td>
+                        <td>March 10 - 14, 2026</td>
+                        <td>Forney Community Park</td>
+                        <td>Ages 8-14</td>
+                        <td class="status-open">Open</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 class="section-title">Player Reviews</h2>
+        
+        <div class="reviews-container">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Coach Austin changed the way I look at the game. The intensity at Elev8 is unmatched!"</p>
+                <span class="reviewer-name">- Sarah M., U14 Player</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"My son has improved his footwork tremendously after just 3 private sessions. Highly recommend."</p>
+                <span class="reviewer-name">- David R., Parent</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"The summer camp was grueling but so much fun. I feel ready for high school tryouts."</p>
+                <span class="reviewer-name">- Jayden T., HS Player</span>
+            </div>
+        </div>
+
+        <div class="review-form">
+            <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary);">Leave a Review</h3>
+            <form action="mailto:contact@elev8performance.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select name="rating">
+                        <option value="5">★★★★★ (5 Stars)</option>
+                        <option value="4">★★★★ (4 Stars)</option>
+                        <option value="3">★★★ (3 Stars)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Review</label>
+                    <textarea name="comment" rows="4" placeholder="Share your experience..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Submit Review via Email</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="about" style="background-color: var(--dark-gray);">
+        <h2 class="section-title">About The Founders</h2>
+        <div class="founders-grid">
+            <div class="coach-card">
+                <img src="austin.jpg" alt="Coach Austin" class="coach-img">
+                <div class="coach-info">
+                    <h3>Coach Austin</h3>
+                    <p>Austin played at the collegiate and professional levels, including with <strong>Arizona Monsoon</strong> and <strong>AC Houston Sur</strong>.</p>
+                </div>
+            </div>
+            <div class="coach-card">
+                <img src="angie.jpg" alt="Coach Angie" class="coach-img">
+                <div class="coach-info">
+                    <h3>Coach Angie</h3>
+                    <p>Angie developed her game with <strong>FC Dallas Youth</strong>, played D1 at <strong>ORU</strong>, and represented <strong>El Salvador</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-bar">
+        <h2>Ready to Elevate?</h2>
+        <p style="margin-bottom: 20px; color: #121212;">Contact us today to book a session or join the team.</p>
+        <div>
+            <a href="tel:2143261261" class="contact-btn">📞 (214) 326-1261</a>
+            <a href="https://www.instagram.com/elev8.performance/" target="_blank" class="contact-btn">📷 @elev8.performance</a>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color: #666;">&copy; 2026 Elev8 Performance. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
